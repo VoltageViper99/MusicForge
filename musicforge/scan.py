@@ -20,26 +20,13 @@ AUDIO_TYPES = {
 
 
 def scan_library(path: Path):
-
-    artists = count_artists(path)
-    albums = count_albums(path)
-    audio = count_audio_types(path)
-    cue_files = count_cue_files(path)
-    empty_albums = count_empty_albums(path)
-   
-
-    print(f"Artists found: {artists}")
-    print()
-    print(f"Albums found: {albums}")
-    print()
-    print(f"Cue files found: {cue_files}")
-    print()
-    print(f"Empty albums found: {empty_albums}")
-
-    print()
-    print("Audio file types:")
-    for ext, count in audio.items():
-        print(f"  {ext}: {count}")
+    return {
+        "artists": count_artists(path),
+        "albums": count_albums(path),
+        "audio": count_audio_types(path),
+        "cue_files": count_cue_files(path),
+        "empty_albums": count_empty_albums(path),
+    }
                          
 
 

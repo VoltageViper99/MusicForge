@@ -14,4 +14,4 @@ MusicForge is a toolkit for managing large music libaries.
 
 Current Version:
 
-v0.1.0(Scanner)
+v0.2.0(Cue Hunter)
