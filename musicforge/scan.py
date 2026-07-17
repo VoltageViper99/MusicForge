@@ -109,20 +109,37 @@ def has_audio_files(path: Path) -> list:
             audio_files.append(file)
     return audio_files
 
-def count_empty_albums(path: Path) -> int:
-    empty_albums = 0
-    for album in path.rglob("*"):
-        if album.is_dir() and image_exists(album):
-            empty_albums += 1
-    for album in path.rglob("*"):
-        if album.is_dir() and has_no_audio_files(album):
-            empty_albums += 1
-    for album in path.rglob("*"):
-        if album.is_dir() and has_audio_files(album):
-                empty_albums -= 1
-                break
+IMAGE_TYPES = {".jpg", ".jpeg", ".png", ".webp"}
 
-    return empty_albums
+def count_empty_albums(path: Path) -> int:
+    empty_count = 0
+
+    for album in path.rglob("*"):
+        if not album.is_dir():
+            continue
+
+        has_image = False
+        has_audio = False
+        has_cue = False
+
+        for file in album.iterdir():
+            if not file.is_file():
+                continue
+
+            suffix = file.suffix.lower()
+
+            if suffix in IMAGE_TYPES:
+                has_image = True
+            elif suffix in AUDIO_TYPES:
+                has_audio = True
+            elif suffix == ".cue":
+                has_cue = True
+
+        if has_image and not has_audio and not has_cue:
+            empty_count += 1
+
+    return empty_count
+
 
 
 
