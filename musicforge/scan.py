@@ -17,6 +17,8 @@ AUDIO_TYPES = {
 }
 
 
+
+
 def scan_library(path: Path):
 
     artists = count_artists(path)
@@ -24,7 +26,7 @@ def scan_library(path: Path):
     audio = count_audio_types(path)
     cue_files = count_cue_files(path)
     empty_albums = count_empty_albums(path)
-    
+   
 
     print(f"Artists found: {artists}")
     print()
@@ -39,7 +41,9 @@ def scan_library(path: Path):
     for ext, count in audio.items():
         print(f"  {ext}: {count}")
                          
-                   
+
+
+
 def count_artists(path: Path) -> int:
 
     artist_count = 0   
@@ -86,6 +90,12 @@ def count_cue_files(path: Path) -> int:
 
     return cue_count
 
+def image_exists(path: Path) -> bool:
+    for file in path.iterdir():
+        if file.is_file() and file.suffix.lower() in [".jpg", ".jpeg", ".png"]:
+            return True
+    return False
+
 def has_no_audio_files(path: Path) -> bool:
     for file in path.iterdir():
         if file.is_file() and file.suffix.lower() in AUDIO_TYPES:
@@ -101,7 +111,9 @@ def has_audio_files(path: Path) -> list:
 
 def count_empty_albums(path: Path) -> int:
     empty_albums = 0
-    
+    for album in path.rglob("*"):
+        if album.is_dir() and image_exists(album):
+            empty_albums += 1
     for album in path.rglob("*"):
         if album.is_dir() and has_no_audio_files(album):
             empty_albums += 1
@@ -111,4 +123,9 @@ def count_empty_albums(path: Path) -> int:
                 break
 
     return empty_albums
+
+
+
+
+
 
