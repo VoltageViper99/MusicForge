@@ -1,0 +1,19 @@
+[music]
+library = "/mnt/music"
+
+[backup]
+enabled = true
+location = "/mnt/musicforge/backups"
+
+[logging]
+level = "INFO"
+
+[splitter]
+delete_original = false
+
+[cue]
+search_online = false
+
+[doctor]
+verify_flac = true
+check_artwork = true
