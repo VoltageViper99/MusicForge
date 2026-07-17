@@ -8,8 +8,5 @@ def main():
     scan_library(library)
 
 
-
-
-
 if __name__ == "__main__":
     main()
