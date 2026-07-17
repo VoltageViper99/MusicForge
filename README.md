@@ -11,6 +11,8 @@ MusicForge is a toolkit for managing large music libaries.
 - Duplicate Finder
 - Metadate Verification
 
+Missing artwork currently checks for external artwork files (.jpg, .jpeg, .png). Embedded artwork is planned for a future release.
+
 
 Current Version:
 
