@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from scan import scan_library
+from .scan import scan_library
 
 
 def main():
