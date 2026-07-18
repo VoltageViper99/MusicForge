@@ -1,6 +1,6 @@
-# MusicForge
+# Library Sentinel
 
-MusicForge is a toolkit for managing large music libaries.
+Library Sentinel is a toolkit for managing large music libaries.
 
 ##
 
